@@ -1,0 +1,34 @@
+---
+title: "lab5-vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{lab5-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(lab5)
+```
+
+## Setup
+To install the lab5 package, source it from GitHub with the command `devtools::install_github("Marbr987/lab5")`.
+
+## Usage of the package
+
+The `get_coordinates` function takes a city name as a string as input and outputs a named vector with the longitude and the altitude coordinate of the city. If the city is not located in Sweden, a message is printed (see examples below).
+```{r}
+get_coordinates("Stockholm")
+get_coordinates("Berlin")
+```
+
+Furthermore, the package provides a Shiny app. In the app, two cities can be entered, which are displayed on a map of Sweden and their coordinates printed. The two input cities must be located in Sweden, otherwise an error message is displayed.
+The app provides a slider to define a p-value, for which the p-norm distance between the two cities is calculated. A plot illustrates the p-norm distances between the cities for different p-values.
+The Shiny app can be opened with `runGitHub()`.
