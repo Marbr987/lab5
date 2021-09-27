@@ -1,7 +1,7 @@
 #' @export
 #' @descition A shiny application visualizing the position of two swedish cities and calculating their p-norm distance.
 #' @import shiny
-#' @importFrom ggplot2 ggplot geom_point geom_line geom_vline theme aes element_line element_rect
+#' @importFrom ggplot2 ggplot geom_point geom_line geom_vline theme aes element_line element_rect labs
 
 library(shiny)
 
@@ -54,7 +54,8 @@ server <- function(input, output) {
             ggplot2::geom_line(data=distance_df, mapping=ggplot2::aes(x=p_values, pn_distance_values)) +
             ggplot2::geom_vline(mapping=ggplot2::aes(xintercept=input$p_value), color="red") +
             ggplot2::theme(panel.background = ggplot2::element_rect(fill = "white", colour = "grey50"),
-                  panel.grid.major = ggplot2::element_line(colour = "grey"), panel.grid.minor = ggplot2::element_line(colour = "grey"))
+                  panel.grid.major = ggplot2::element_line(colour = "grey"), panel.grid.minor = ggplot2::element_line(colour = "grey")) +
+            ggplot2::labs(x="p value",y="p-norm-distance")
     })
     
     output$coordinates_msg <- renderPrint({
