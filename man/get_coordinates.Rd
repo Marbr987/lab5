@@ -7,7 +7,7 @@
 get_coordinates(city_name)
 }
 \arguments{
-\item{city_name1}{The name of a city as a string}
+\item{city_name}{The name of a city as a string}
 }
 \value{
 The latitude and longitude coordinates of the city

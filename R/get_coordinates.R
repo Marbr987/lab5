@@ -1,5 +1,5 @@
 #' getLocation
-#' @param city_name1 The name of a city as a string
+#' @param city_name The name of a city as a string
 #' @return The latitude and longitude coordinates of the city
 #' @importFrom httr GET
 #' @importFrom jsonlite fromJSON

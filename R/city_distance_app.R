@@ -1,6 +1,7 @@
 #' @export
+#' @descition A shiny application visualizing the position of two swedish cities and calculating their p-norm distance.
 #' @import shiny
-#' @importFrom ggplot2 ggplot geom_point geom_line geom_vline theme aes element_line
+#' @importFrom ggplot2 ggplot geom_point geom_line geom_vline theme aes element_line element_rect
 
 library(shiny)
 
@@ -13,7 +14,7 @@ ui <- fluidPage(
     # Sidebar with a slider input for number of bins 
     sidebarLayout(
         sidebarPanel(
-            textInput(inputId="city1", label="Distance between", value="Linköping"),
+            textInput(inputId="city1", label="Distance between", value="Linkoping"),
             textInput(inputId="city2", label="and", value="Stockholm"),
             sliderInput("p_value", "p-norm:", min = 1, max = 8, value = 2, step=0.25)
         ),
@@ -33,14 +34,13 @@ server <- function(input, output) {
     output$posPlot <- renderPlot({
         city_coordinates <- data.frame(longitude=c(get_coordinates(input$city1)["longitude"], get_coordinates(input$city2)["longitude"]),
                                        latitude=c(get_coordinates(input$city1)["latitude"], get_coordinates(input$city2)["latitude"]))
-        data(sweden_border)
         ggplot2::ggplot(mapping=ggplot2::aes(x=longitude, y=latitude)) +
             ggplot2::geom_point(data=sweden_border, size=0.000001) +
             ggplot2::geom_point(data=city_coordinates, size=3, color="red") +
-            ggplot2::theme(aspect.ratio=1, panel.background = element_rect(fill = "white", colour = "grey50"),
+            ggplot2::theme(aspect.ratio=1, panel.background = ggplot2::element_rect(fill = "white", colour = "grey50"),
                   panel.grid.major = ggplot2::element_line(colour = "grey"), panel.grid.minor = ggplot2::element_line(colour = "grey")) +
-            xlim(10, 25) +
-            ylim(55, 70)
+            ggplot2::xlim(10, 25) +
+            ggplot2::ylim(55, 70)
     })
     
     output$distPlot <- renderPlot({
@@ -53,7 +53,7 @@ server <- function(input, output) {
         ggplot2::ggplot() +
             ggplot2::geom_line(data=distance_df, mapping=ggplot2::aes(x=p_values, pn_distance_values)) +
             ggplot2::geom_vline(mapping=ggplot2::aes(xintercept=input$p_value), color="red") +
-            ggplot2::theme(panel.background = element_rect(fill = "white", colour = "grey50"),
+            ggplot2::theme(panel.background = ggplot2::element_rect(fill = "white", colour = "grey50"),
                   panel.grid.major = ggplot2::element_line(colour = "grey"), panel.grid.minor = ggplot2::element_line(colour = "grey"))
     })
     
