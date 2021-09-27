@@ -1,0 +1,15 @@
+Package: lab5
+Type: Package
+Title: Calculation of distances between two cities
+Version: 1.0
+Date: 2021-09-23
+Authors@R: c(person("Dharani", "Ganesan", role = c("aut", "cre"), email = "dhaga613@student.liu.se"))
+Description: The package provides a Shiny interface where two cities can be entered by name and different p-norm distances be calculated.
+Encoding: UTF-8
+License: MIT
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+RoxygenNote: 7.1.2
+Depends: 
+    R (>= 2.10)
