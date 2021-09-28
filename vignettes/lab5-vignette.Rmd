@@ -31,4 +31,4 @@ get_coordinates("Berlin")
 
 Furthermore, the package provides a Shiny app. In the app, two cities can be entered, which are displayed on a map of Sweden and their coordinates printed. The two input cities must be located in Sweden, otherwise an error message is displayed.
 The app provides a slider to define a p-value, for which the p-norm distance between the two cities is calculated. A plot illustrates the p-norm distances between the cities for different p-values.
-The Shiny app can be opened with `runGitHub()`.
+The Shiny app can be opened with `shiny::runGitHub('Marbr987/lab5', subdir = "R")`.
