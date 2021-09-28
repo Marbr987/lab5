@@ -3,7 +3,6 @@
 #' @description A shiny application visualizing the position of two swedish cities and calculating their p-norm distance.
 #' @import shiny
 #' @importFrom ggplot2 ggplot geom_point geom_line geom_vline theme aes element_line element_rect labs
-#' @export
 
 library(shiny)
 
