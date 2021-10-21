@@ -3,6 +3,9 @@
 \name{app}
 \alias{app}
 \title{Shiny app}
+\source{
+get_coordinates
+}
 \description{
 A shiny application visualizing the position of two swedish cities and calculating their p-norm distance.
 }

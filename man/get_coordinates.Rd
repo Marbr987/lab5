@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_coordinates.R
 \name{get_coordinates}
 \alias{get_coordinates}
-\title{getLocation}
+\title{get_coordinates}
 \usage{
 get_coordinates(city_name)
 }
@@ -13,5 +13,5 @@ get_coordinates(city_name)
 The latitude and longitude coordinates of the city
 }
 \description{
-getLocation
+get_coordinates
 }
