@@ -3,8 +3,10 @@
 #' @description A shiny application visualizing the position of two swedish cities and calculating their p-norm distance.
 #' @import shiny
 #' @importFrom ggplot2 ggplot geom_point geom_line geom_vline theme aes element_line element_rect labs
+#' @source get_coordinates
 
 library(shiny)
+if(!("lab5" %in% installed.packages()[,"Package"])) devtools::install_github("Marbr987/lab5")
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
