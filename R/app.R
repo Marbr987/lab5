@@ -5,7 +5,7 @@
 #' @importFrom ggplot2 ggplot geom_point geom_line geom_vline theme aes element_line element_rect labs
 
 library(shiny)
-library(lab5)
+source(lab5)
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
