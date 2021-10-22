@@ -6,7 +6,10 @@
 #' @source get_coordinates
 
 library(shiny)
-if(!("lab5" %in% installed.packages()[,"Package"])) devtools::install_github("Marbr987/lab5")
+if(!("lab5" %in% installed.packages()[,"Package"])){
+    devtools::install_github("Marbr987/lab5")
+    library("lab5")
+}
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
