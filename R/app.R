@@ -7,15 +7,14 @@
 
 library(shiny)
 
-if (!require("devtools")){
-    install.packages("devtools")
-    devtools::install_github("Marbr987/lab5")
-    library("lab5")
-}
-
-#if(!("lab5" %in% installed.packages()[,"Package"])){
-#    devtools::install_github("Marbr987/lab5")
+#if (require("devtools") != FALSE){
+#    #devtools::install_github("Marbr987/lab5")
+#    library("lab5")
 #}
+
+if(!("lab5" %in% installed.packages()[,"Package"])){
+    devtools::install_github("Marbr987/lab5")
+}
 
 #if(("lab5" %in% installed.packages()[,"Package"])){
 #    library("lab5")
@@ -50,8 +49,8 @@ ui <- fluidPage(
 # Define server logic required to draw a histogram
 server <- function(input, output) {
     output$posPlot <- renderPlot({
-        city_coordinates <- data.frame(longitude=c(get_coordinates(input$city1)["longitude"], get_coordinates(input$city2)["longitude"]),
-                                       latitude=c(get_coordinates(input$city1)["latitude"], get_coordinates(input$city2)["latitude"]))
+        city_coordinates <- data.frame(longitude=c(lab5::get_coordinates(input$city1)["longitude"], lab5::get_coordinates(input$city2)["longitude"]),
+                                       latitude=c(lab5::get_coordinates(input$city1)["latitude"], lab5::get_coordinates(input$city2)["latitude"]))
         ggplot2::ggplot(mapping=ggplot2::aes(x=longitude, y=latitude)) +
             ggplot2::geom_point(data=sweden_border, size=0.000001) +
             ggplot2::geom_point(data=city_coordinates, size=3, color="red") +
@@ -63,8 +62,8 @@ server <- function(input, output) {
     
     output$distPlot <- renderPlot({
         p_values <- seq(from=1, to=8, by=0.25)
-        city_coordinates <- data.frame(longitude=c(get_coordinates(input$city1)["longitude"], get_coordinates(input$city2)["longitude"]),
-                                       latitude=c(get_coordinates(input$city1)["latitude"], get_coordinates(input$city2)["latitude"]))
+        city_coordinates <- data.frame(longitude=c(lab5::get_coordinates(input$city1)["longitude"], lab5::get_coordinates(input$city2)["longitude"]),
+                                       latitude=c(lab5::get_coordinates(input$city1)["latitude"], lab5::get_coordinates(input$city2)["latitude"]))
         pn_distance_values <- unlist(lapply(p_values, function(x){dist(matrix(c(city_coordinates[1,],city_coordinates[2,]), ncol=2, nrow = 2, byrow = TRUE),
                                                                        p=x, method = "minkowski")}))
         distance_df <- data.frame(p_values=p_values, pn_distance_values=pn_distance_values)
@@ -77,12 +76,12 @@ server <- function(input, output) {
     })
     
     output$coordinates_msg <- renderPrint({
-        paste("The coordinates of ", input$city1, " are (", toString(get_coordinates(input$city1)),
-                ") and the coordinates of ", input$city2, " are (", toString(get_coordinates(input$city2)), ")", sep="")
+        paste("The coordinates of ", input$city1, " are (", toString(lab5::get_coordinates(input$city1)),
+                ") and the coordinates of ", input$city2, " are (", toString(lab5::get_coordinates(input$city2)), ")", sep="")
     })
     
     output$distance_msg <- renderPrint({
-        pn_distance <- dist(matrix(c(get_coordinates(input$city1), get_coordinates(input$city2)), ncol=2, nrow = 2, byrow = TRUE),
+        pn_distance <- dist(matrix(c(lab5::get_coordinates(input$city1), lab5::get_coordinates(input$city2)), ncol=2, nrow = 2, byrow = TRUE),
                             p=input$p_value, method = "minkowski")
         paste("The ", toString(input$p_value),"-norm distance is ", toString(round(pn_distance, 3)), sep="")
     })
