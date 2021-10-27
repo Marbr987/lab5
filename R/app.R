@@ -43,7 +43,7 @@ server <- function(input, output) {
         city_coordinates <- data.frame(longitude=c(lab5::get_coordinates(input$city1)["longitude"], lab5::get_coordinates(input$city2)["longitude"]),
                                        latitude=c(lab5::get_coordinates(input$city1)["latitude"], lab5::get_coordinates(input$city2)["latitude"]))
         ggplot2::ggplot(mapping=ggplot2::aes(x=longitude, y=latitude)) +
-            ggplot2::geom_point(data=sweden_border, size=0.000001) +
+            ggplot2::geom_point(data=lab5::sweden_border, size=0.000001) +
             ggplot2::geom_point(data=city_coordinates, size=3, color="red") +
             ggplot2::theme(aspect.ratio=1, panel.background = ggplot2::element_rect(fill = "white", colour = "grey50"),
                   panel.grid.major = ggplot2::element_line(colour = "grey"), panel.grid.minor = ggplot2::element_line(colour = "grey")) +
